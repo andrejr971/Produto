@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGruposTable extends Migration
+class CreateTaxaProduto extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateGruposTable extends Migration
      */
     public function up()
     {
-        Schema::create('grupos', function (Blueprint $table) {
+        Schema::create('taxa_produto', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome');
-            $table->string('descricao')->nullable();
-            $table->softDeletes();
+            $table->string('ipi')->nullable();
+            $table->string('frete')->nullable();
+            $table->string('markup');
+            $table->unsignedBigInteger('produto_id');
+            $table->foreign('produto_id')->references('id')
+                ->on('produtos');
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateGruposTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grupos');
+        Schema::dropIfExists('taxa_produto');
     }
 }

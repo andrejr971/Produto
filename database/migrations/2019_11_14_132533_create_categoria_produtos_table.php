@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGruposTable extends Migration
+class CreateCategoriaProdutosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateGruposTable extends Migration
      */
     public function up()
     {
-        Schema::create('grupos', function (Blueprint $table) {
+        Schema::create('categoria_produtos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
             $table->string('descricao')->nullable();
+            $table->unsignedBigInteger('grupo_id');
+            $table->foreign('grupo_id')->references('id')
+                ->on('grupos')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +32,6 @@ class CreateGruposTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grupos');
+        Schema::dropIfExists('categoria_produtos');
     }
 }
