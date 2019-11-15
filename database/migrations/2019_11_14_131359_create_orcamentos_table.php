@@ -19,6 +19,7 @@ class CreateOrcamentosTable extends Migration
             $table->string('observacao')->nullable();
             $table->float('valor');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
