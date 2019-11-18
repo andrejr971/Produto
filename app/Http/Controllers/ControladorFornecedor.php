@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Fornecedor;
 use Illuminate\Http\Request;
 
 class ControladorFornecedor extends Controller
@@ -13,7 +14,9 @@ class ControladorFornecedor extends Controller
      */
     public function index()
     {
-        //
+        return view('fornecedor.fornecedor', [
+            'fornecedores' => Fornecedor::all()
+        ]);
     }
 
     /**
@@ -23,7 +26,7 @@ class ControladorFornecedor extends Controller
      */
     public function create()
     {
-        //
+        return view('fornecedor.cadFornecedor');
     }
 
     /**
@@ -34,7 +37,25 @@ class ControladorFornecedor extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fornecedor = new Fornecedor();
+
+        $fornecedor->fornecedor = $request->input('nome');
+        $fornecedor->cnpj = $request->input('cnpj');
+        $fornecedor->telefone = $request->input('telefone');
+        $fornecedor->email = $request->input('email');
+        $fornecedor->inscricao = $request->input('inscEst');
+        $fornecedor->cep = $request->input('cep');
+        $fornecedor->cidade = $request->input('cidade');
+        $fornecedor->endereco = $request->input('endereco');
+        $fornecedor->bairro = $request->input('cidade');
+        $fornecedor->uf = $request->input('uf');
+        $fornecedor->numero = $request->input('numero');
+
+        $fornecedor->save();
+
+        return view('fornecedor.cadFornecedor', [
+            'resul' => 'Cadastro Efetuado'
+        ]);
     }
 
     /**

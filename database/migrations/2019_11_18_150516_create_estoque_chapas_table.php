@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEstoqueColaTecidosTable extends Migration
+class CreateEstoqueChapasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,24 @@ class CreateEstoqueColaTecidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('estoque_cola_tinta', function (Blueprint $table) {
+        Schema::create('estoque_chapas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('descricao');
             $table->string('cod_item');
-            $table->string('ean_item');
-            $table->string('estante');
-            $table->string('un_medida');
+            $table->string('espessura');
+            $table->string('largura');
+            $table->string('altura');
+            $table->float('area');
             $table->float('qtd');
             $table->float('estoque_ideal');
             $table->float('estoque_min');
+            $table->float('preco');
             $table->unsignedBigInteger('fornecedor_id');
             $table->foreign('fornecedor_id')->references('id')
-                ->on('fornecedores')->onDelete('cascade');
+                ->on('fornecedors')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
+
         });
     }
 
@@ -38,6 +41,6 @@ class CreateEstoqueColaTecidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estoque_cola_tecidos');
+        Schema::dropIfExists('estoque_chapas');
     }
 }

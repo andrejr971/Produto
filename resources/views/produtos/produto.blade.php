@@ -11,7 +11,7 @@
                         <a href="/produto/grupo" class="btn btn-info w-100">Novo Grupo</a>
                     </div>
                     <div class="col">
-                        <a href="/produto/tipo" class="btn btn-danger w-100">Nova Categoria</a>
+                        <a href="/produto/categoria" class="btn btn-danger w-100">Nova Categoria</a>
                     </div>
                     <div class="col">
                         <a href="/produto/novo" class="btn btn-warning w-100">Novo Produto</a>

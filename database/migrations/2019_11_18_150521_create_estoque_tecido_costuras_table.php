@@ -21,12 +21,12 @@ class CreateEstoqueTecidoCosturasTable extends Migration
             $table->string('pedido');
             $table->string('metragem');
             $table->string('estante');
+            $table->float('preco');
             $table->unsignedBigInteger('fornecedor_id');
             $table->foreign('fornecedor_id')->references('id')
-                ->on('fornecedores')->onDelete('cascade');
+                ->on('fornecedors')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 

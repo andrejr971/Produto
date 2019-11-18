@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrcamentoProdutos extends Migration
+class CreateOrcamentoProduto extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateOrcamentoProdutos extends Migration
      */
     public function up()
     {
-        Schema::create('orcamento_produtos', function (Blueprint $table) {
+        Schema::create('orcamento_produto', function (Blueprint $table) {
             $table->unsignedBigInteger('orcamento_id');
             $table->foreign('orcamento_id')->references('id')
                 ->on('orcamentos');
@@ -31,6 +31,6 @@ class CreateOrcamentoProdutos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orcamento_produtos');
+        Schema::dropIfExists('orcamento_produto');
     }
 }

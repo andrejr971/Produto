@@ -1,0 +1,174 @@
+php artisan make:model Grupo -m
+php artisan make:model Orcamento -m
+php artisan make:model CategoriaProduto -m
+php artisan make:model TipoProduto -m
+php artisan make:model Produto -m
+php artisan make:migration create_orcamento_produto
+php artisan make:migration create_medida_produto
+php artisan make:migration create_taxa_produto
+php artisan make:migration create_parte_produto
+php artisan make:model Fornecedor -m
+php artisan make:model EstoqueChapa -m
+php artisan make:model EstoqueColaTinta -m
+php artisan make:model EstoqueGeral -m
+php artisan make:model EstoqueTecidoCostura -m
+php artisan make:migration create_estoque
+
+
+$table->bigIncrements('id');
+            $table->string('nome');
+            $table->string('descricao')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+
+$table->bigIncrements('id');
+            $table->string('titulo');
+            $table->string('observacao')->nullable();
+            $table->float('valor');
+            $table->timestamps();
+            $table->softDeletes();
+
+$table->bigIncrements('id');
+            $table->string('nome');
+            $table->string('descricao')->nullable();
+            $table->unsignedBigInteger('grupo_id');
+            $table->foreign('grupo_id')->references('id')
+                ->on('grupos')->onDelete('cascade');
+            $table->softDeletes();
+            $table->timestamps();
+
+$table->bigIncrements('id');
+            $table->string('nome');
+            $table->string('descricao');
+            $table->softDeletes();
+            $table->timestamps();
+
+$table->bigIncrements('id');
+            $table->float('preco')->nullable();
+            $table->string('descricao');
+            $table->integer('quantidade')->nullable();
+            $table->string('sku')->nullable();
+            $table->string('observacao')->nullable();
+            $table->unsignedBigInteger('categoria_produto_id');
+            $table->foreign('categoria_produto_id')->references('id')
+                ->on('categoria_produtos')->onDelete('cascade')->nullable();
+            $table->unsignedBigInteger('tipo_produto_id');
+            $table->foreign('tipo_produto_id')->references('id')
+                ->on('tipo_produtos')->onDelete('cascade')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+
+$table->unsignedBigInteger('orcamento_id');
+            $table->foreign('orcamento_id')->references('id')
+                ->on('orcamentos');
+            $table->integer('produto_id')->unsigned();
+            $table->integer('categoria_id')->unsigned();
+            $table->integer('qtd');
+            $table->timestamps();
+
+$table->bigIncrements('id');
+            $table->string('largura')->nullable();
+            $table->string('altura')->nullable();
+            $table->string('profundidade')->nullable();
+            $table->unsignedBigInteger('produto_id');
+            $table->foreign('produto_id')->references('id')
+                ->on('produtos');
+            $table->timestamps();
+
+$table->bigIncrements('id');
+            $table->string('ipi')->nullable();
+            $table->string('frete')->nullable();
+            $table->string('markup');
+            $table->unsignedBigInteger('produto_id');
+            $table->foreign('produto_id')->references('id')
+                ->on('produtos');
+            $table->timestamps();
+
+$table->unsignedBigInteger('produto_id');
+            $table->foreign('produto_id')->references('id')
+                ->on('produtos');
+            $table->string('descricao');
+            $table->string('largura')->nullable();
+            $table->string('altura')->nullable();
+            $table->string('profundidade')->nullable();
+            $table->timestamps();
+
+$table->bigIncrements('id');
+            $table->string('fornecedor');
+            $table->string('cnpj');
+            $table->string('telefone');
+            $table->string('email');
+            $table->string('inscricao');
+            $table->string('cep');
+            $table->string('endereco');
+            $table->string('cidade');
+            $table->string('bairro');
+            $table->string('uf');
+            $table->integer('numero');
+            $table->timestamps();
+            $table->softDeletes();
+
+$table->bigIncrements('id');
+            $table->string('descricao');
+            $table->string('cod_item');
+            $table->string('ean_item');
+            $table->string('estante');
+            $table->string('un_medida');
+            $table->float('qtd');
+            $table->float('estoque_ideal');
+            $table->float('estoque_min');
+            $table->unsignedBigInteger('fornecedor_id');
+            $table->foreign('fornecedor_id')->references('id')
+                ->on('fornecedors')->onDelete('cascade');
+            $table->timestamps();
+            $table->softDeletes();
+
+$table->bigIncrements('id');
+            $table->string('descricao');
+            $table->string('cod_item');
+            $table->string('espessura');
+            $table->string('largura');
+            $table->string('altura');
+            $table->float('area');
+            $table->float('qtd');
+            $table->float('estoque_ideal');
+            $table->float('estoque_min');
+            $table->unsignedBigInteger('fornecedor_id');
+            $table->foreign('fornecedor_id')->references('id')
+                ->on('fornecedors')->onDelete('cascade');
+            $table->timestamps();
+            $table->softDeletes();
+
+$table->bigIncrements('id');
+            $table->string('descricao');
+            $table->string('cod_item');
+            $table->string('reservado');
+            $table->string('pedido');
+            $table->string('metragem');
+            $table->string('estante');
+            $table->unsignedBigInteger('fornecedor_id');
+            $table->foreign('fornecedor_id')->references('id')
+                ->on('fornecedors')->onDelete('cascade');
+            $table->timestamps();
+            $table->softDeletes();
+
+$table->bigIncrements('id');
+            $table->string('descricao');
+            $table->string('cod_item');
+            $table->string('ean_item');
+            $table->string('estante');
+            $table->string('un_medida');
+            $table->float('qtd');
+            $table->float('estoque_ideal');
+            $table->float('estoque_min');
+            $table->unsignedBigInteger('fornecedor_id');
+            $table->foreign('fornecedor_id')->references('id')
+                ->on('fornecedors')->onDelete('cascade');
+            $table->timestamps();
+            $table->softDeletes();
+
+$table->bigIncrements('id');
+            $table->string('descricao');
+            $table->string('cod_item');
+            $table->string('qtd');
+            $table->string('un_medida');

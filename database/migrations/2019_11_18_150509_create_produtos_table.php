@@ -28,7 +28,6 @@ class CreateProdutosTable extends Migration
                 ->on('tipo_produtos')->onDelete('cascade')->nullable();
             $table->softDeletes();
             $table->timestamps();
-
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Grupo;
+use App\CategoriaProduto;
 use Illuminate\Http\Request;
 
 class ControladorProduto extends Controller
@@ -15,6 +16,17 @@ class ControladorProduto extends Controller
     public function index()
     {
         return view('produtos.produto');
+    }
+
+    public function categoriaIndex()
+    {
+        return view('produtos.cadCategoria', [
+            'grupos' => Grupo::all()
+        ]);
+    }
+
+    public function novoProd() {
+        return view('produtos.cadProd');
     }
 
     /**
@@ -47,6 +59,21 @@ class ControladorProduto extends Controller
 
     }
 
+    public function categoriaForm(Request $request) {
+        $categoria = new CategoriaProduto();
+        $categoria->nome = $request->input('nome');
+        $categoria->descricao = $request->input('desc');
+        $categoria->grupo_id = $request->input('grupo');
+
+        $categoria->save();
+
+        return view('produtos.cadCategoria', [
+            'resul' => 'Cadastro Efetuado',
+            'grupos' => Grupo::all()
+        ]);
+    }
+
+    
     /**
      * Display the specified resource.
      *
