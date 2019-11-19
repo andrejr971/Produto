@@ -20,6 +20,7 @@ class CreateEstoqueColaTintasTable extends Migration
             $table->string('ean_item');
             $table->string('estante');
             $table->string('un_medida');
+            $table->string('vol');
             $table->float('qtd');
             $table->float('estoque_ideal');
             $table->float('estoque_min');

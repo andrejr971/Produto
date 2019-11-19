@@ -12,9 +12,9 @@
                 </div>
             </div>
         @endif
+        <h1 class="text-center">Adicionar Item</h1>
+        <hr>
         @if ($add == 'chapas')
-            <h1 class="text-center">Adicionar Chapas</h1>
-            <hr>
             <div class="card">
                 <div class="card-body">
                     @component('componente.estoque.compEstoqueChapa', [
@@ -25,11 +25,29 @@
                 </div>
             </div>
         @elseif ($add == 'geral')
-            <h1 class="text-center">Adicionar Item</h1>
-            <hr>
             <div class="card">
                 <div class="card-body">
                     @component('componente.estoque.compEstoqueGeral', [
+                        'estantes' => $estantes, 
+                        'fornecedores' => $fornecedores
+                    ])
+                    @endcomponent
+                </div>
+            </div>
+        @elseif ($add == 'tecido') 
+            <div class="card">
+                <div class="card-body">
+                    @component('componente.estoque.compEstoqueTecido', [
+                        'estantes' => $estantes, 
+                        'fornecedores' => $fornecedores
+                    ])
+                    @endcomponent
+                </div>
+            </div>
+        @elseif ($add == 'cola') 
+            <div class="card">
+                <div class="card-body">
+                    @component('componente.estoque.compEstoqueCola', [
                         'estantes' => $estantes, 
                         'fornecedores' => $fornecedores
                     ])

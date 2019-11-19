@@ -71,9 +71,8 @@
             <div class="form-group w-100">
                 <label>Un. Medida<span style="color: red;">*</span></label>
                 <select name="unidade" class="form-control">
-                    <option value="" selected>Un. Medidas</option>
                     <option value="UN">UN</option>
-                    <option value="CX">CX</option>
+                    <option value="CX" selected>CX</option>
                     <option value="RL">RL</option>
                     <option value="MT">MT</option>
                 </select>

@@ -65,6 +65,11 @@ Route::prefix('/estoque')->group(function() {
         'uses' => 'ControladorEstoque@index'
     ]);
 
+    Route::get('/ver', [
+        'as' => 'verEstoque',
+        'uses' => 'ControladorEstoque@indexView'
+    ]);
+
     Route::prefix('/chapas')->group(function() {
         Route::get('/', [
             'as' => 'estoqueChapas',
@@ -83,6 +88,11 @@ Route::prefix('/estoque')->group(function() {
     });
 
     Route::prefix('/geral')->group(function() {
+        Route::get('/', [
+            'as' => 'Geral',
+            'uses' => 'ControladorEstoque@EstoqueGeralIndex'
+        ]);
+
         Route::get('/add', [
             'as' => 'addGeral',
             'uses' => 'ControladorEstoque@addItemEstoqueGeral'
@@ -93,6 +103,41 @@ Route::prefix('/estoque')->group(function() {
             'uses' => 'ControladorEstoque@addItemEstoqueGeralPost'
         ]);
     });
+
+    Route::prefix('/tecido')->group(function() {
+        Route::get('/', [
+            'as' => 'Tecido',
+            'uses' => 'ControladorEstoque@EstoqueTecidoIndex'
+        ]);
+
+        Route::get('/add', [
+            'as' => 'addTecido',
+            'uses' => 'ControladorEstoque@addItemEstoqueTecido'
+        ]);
+
+        Route::post('/add', [
+            'as' => 'addTecido',
+            'uses' => 'ControladorEstoque@addItemEstoqueTecidoPost'
+        ]);
+    });
+
+    Route::prefix('/cola')->group(function() {
+        Route::get('/', [
+            'as' => 'Cola',
+            'uses' => 'ControladorEstoque@EstoqueColaIndex'
+        ]);
+
+        Route::get('/add', [
+            'as' => 'addCola',
+            'uses' => 'ControladorEstoque@addItemEstoqueCola'
+        ]);
+
+        Route::post('/add', [
+            'as' => 'addCola',
+            'uses' => 'ControladorEstoque@addItemEstoqueColaPost'
+        ]);
+    });
+
 });
 
 Route::prefix('/fornecedor')->group(function(){

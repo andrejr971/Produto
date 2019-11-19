@@ -17,9 +17,11 @@ class CreateEstoqueTecidoCosturasTable extends Migration
             $table->bigIncrements('id');
             $table->string('descricao');
             $table->string('cod_item');
+            $table->string('ean_item');
             $table->string('reservado');
-            $table->string('pedido');
+            $table->string('pedido')->nullable();
             $table->string('metragem');
+            $table->string('estoque_min');
             $table->string('estante');
             $table->float('preco');
             $table->unsignedBigInteger('fornecedor_id');

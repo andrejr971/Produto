@@ -1,16 +1,22 @@
-<form action="/estoque/chapas/add" method="POST">
+<form action="/estoque/tecido/add" method="POST">
     @csrf
     <div class="row">
         <div class="col">
             <div class="form-group w-100">
                 <label>Descriçao Item <span style="color: red;">*</span></label>
-                <input type="text" class="form-control" name="nome" placeholder="EX: BRANCO TX" required>
+                <input type="text" class="form-control" name="nome" placeholder="EX: TECIDO MOSTARDA" required>
             </div>
         </div>
         <div class="col">
             <div class="form-group w-100">
-                <label>Quantidade <span style="color: red;">*</span></label>
-                <input type="number" class="form-control" name="qtd" required>
+                <label>OC <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" name="ean" placeholder="EX: 00000" required>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group w-100">
+                <label>Metragem <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" name="qtd" required>
             </div>
         </div>
         <div class="col-2">
@@ -48,30 +54,29 @@
                 </select>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
+        <div class="col">
             <div class="form-group w-100">
-                <label>Un. Medida<span style="color: red;">*</span></label>
-                <select name="unidade" class="form-control">
-                    <option value="UN" selected>UN</option>
-                    <option value="CX">CX</option>
-                    <option value="RL">RL</option>
-                    <option value="MT">MT</option>
+                <label>Nº Prateleira<span style="color: red;">*</span></label>
+                <select name="estante" class="form-control">
+                    <option value="" selected>Estantes</option>
+                    @foreach ($estantes as $estante)
+                        <option value="{{ $estante }}">{{ $estante }}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col">
             <div class="form-group w-100">
-                <label>Largura<span style="color: red;">*</span></label>
-                <input type="number" class="form-control" name="largura" maxlength="8" required>
+                <label>Un. Medida<span style="color: red;">*</span></label>
+                <select name="unidade" class="form-control">
+                    <option value="UN">UN</option>
+                    <option value="CX">CX</option>
+                    <option value="RL">RL</option>
+                    <option value="MT" selected>MT</option>
+                </select>
             </div>
-        </div>
-        <div class="col">
-            <div class="form-group w-100">
-                <label>Altura<span style="color: red;">*</span></label>
-                <input type="number" class="form-control" name="altura" maxlength="8" required>
-            </div>    
         </div>
         <div class="col">
             <div class="form-group w-100">
@@ -81,18 +86,30 @@
         </div>
         <div class="col">
             <div class="form-group w-100">
-                <label>Espessura<span style="color: red;">*</span></label>
-                <select name="espessura" class="form-control">
-                    <option value="4mm">4mm</option>
-                    <option value="6mm">6mm</option>
-                    <option value="9mm">9mm</option>
-                    <option value="12mm">12mm</option>
-                    <option value="15mm">15mm</option>
-                    <option value="18mm">18mm</option>
-                    <option value="25mm">25mm</option>
-                    <option value="35mm">35mm</option>
-                </select>
+                <label>Reservado<span style="color: red;">*</span></label>
+                <div class="row">
+                    <div class="form-check-inline">
+                        <div class="row">
+                            <div class="col">
+                                <label for="sim">Sim</label>
+                            </div>
+                            <div class="col">
+                                    <input type="radio" id="sim" class="form-check-input" value="sim" name="reservado" required>
+                            </div>
+                            <div class="col">
+                                <label for="nao">Não</label>
+                            </div>
+                            <div class="col">
+                                <input type="radio" id="nao" class="form-check-input" value="nao" name="reservado" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="col">
+            <label>Pedido</label>
+            <input type="text" class="form-control" name="pedido">
         </div>
     </div>
     <div class="row">

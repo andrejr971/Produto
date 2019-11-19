@@ -2,13 +2,13 @@
 
 @section('conteudo')
     <div class="container mt-2">
-        <h1 class="text-center">Estoque Chapas</h1>
+        <h1 class="text-center">Estoque Geral</h1>
         <hr>
         <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <a href="/estoque/chapas/add" class="btn btn-info w-100">Adicionar Item</a>
+                        <a href="/estoque/geral/add" class="btn btn-info w-100">Adicionar Item</a>
                     </div>
                     <div class="col">
                         <div class="btn-group  w-100">
@@ -43,15 +43,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($chapas as $chapa)
+                                    @foreach ($geral as $item)
                                         <tr >
-                                            <td> {{ $chapa->id }}</td>
-                                            <td> {{ $chapa->descricao }}</td>
-                                            <td> {{ $chapa->cod_item }} </td>
-                                            <td> {{ $chapa->qtd }} UN</td>
+                                            <td> {{ $item->id }}</td>
+                                            <td> {{ $item->descricao }}</td>
+                                            <td> {{ $item->cod_item }} </td>
+                                            <td> {{ $item->qtd }} UN</td>
                                             <td>
                                                 @foreach ($fornecedores as $fornecedor)
-                                                    @if ($fornecedor->id === $chapa->fornecedor_id)
+                                                    @if ($fornecedor->id === $item->fornecedor_id)
                                                         {{ $fornecedor->fornecedor }}
                                                     @endif
                                                 @endforeach
